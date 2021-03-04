@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+}
+
+.container {
+    height: 100vh;
+
+}
+
+.sidenav{
+    display: flex;
+    flex-direction: column;
+
+    button {
+        margin: 10px 20px;
+    }
+}

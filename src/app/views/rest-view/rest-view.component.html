@@ -1,0 +1,12 @@
+<h1>Characters:</h1>
+<div class="container">
+    <mat-card class="clickable" *ngFor="let character of characters">
+        <mat-card-header>
+          <mat-card-title>{{ character.name }}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{character.image}}">
+        <mat-card-content *ngIf="character.type">
+            {{ character.type }}
+        </mat-card-content>
+      </mat-card>
+</div>
