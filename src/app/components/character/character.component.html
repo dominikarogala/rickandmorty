@@ -1,0 +1,9 @@
+<mat-card class="clickable">
+  <mat-card-header>
+    <mat-card-title>{{ character.name }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{character.image}}">
+  <mat-card-content *ngIf="character.type">
+    {{ character.type }}
+  </mat-card-content>
+</mat-card>

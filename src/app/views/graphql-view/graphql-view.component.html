@@ -1,1 +1,9 @@
-<p>graphql-view works!</p>
+<h1>Characters:</h1>
+
+<div class="container">
+  <app-character *ngFor="let character of characters$ | async as characters" [character]="character"
+    routerLink="/characterdetailsgraphql/{{ character.id }}"></app-character>
+</div>
+
+<mat-paginator [length]="671" [pageSize]="20" [pageIndex]="1" [showFirstLastButtons]="true"
+  (page)="pageChanged($event)"></mat-paginator>

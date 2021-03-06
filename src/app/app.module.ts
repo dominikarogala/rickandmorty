@@ -30,6 +30,7 @@ import { GraphqlViewModule } from './views/graphql-view/graphql-view.module';
     MatButtonModule,
 
     RestViewModule,
+    
     GraphqlViewModule
   ],
   providers: [],

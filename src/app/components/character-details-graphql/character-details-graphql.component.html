@@ -1,0 +1,12 @@
+<div *ngIf="character$ | async as character" class="details">
+    <img src="{{ character.image }}">
+    <div>
+      <h1> {{character.name}} </h1>
+      <p *ngIf="character.type"> <span>Type:</span> {{ character.type }}</p>
+      <p> <span> Gender:</span> {{ character.gender }}</p>
+      <p> <span>Status:</span> {{ character.status }}</p>
+      <p> <span>Species:</span> {{ character.species }}</p>
+      <p> <span>Origin:</span> {{ character.origin?.name }}</p>
+    </div>
+  </div>
+  

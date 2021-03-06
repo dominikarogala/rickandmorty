@@ -1,12 +1,10 @@
 <h1>Characters:</h1>
+
 <div class="container">
-    <mat-card class="clickable" *ngFor="let character of characters">
-        <mat-card-header>
-          <mat-card-title>{{ character.name }}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="{{character.image}}">
-        <mat-card-content *ngIf="character.type">
-            {{ character.type }}
-        </mat-card-content>
-      </mat-card>
+  <ng-container *ngIf="results$ | async as results">
+    <app-character *ngFor="let character of results.results" [character]="character"
+      routerLink="/characterdetailsrest/{{ character.id }}"></app-character>
+  </ng-container>
 </div>
+
+<mat-paginator [length]="671" [pageSize]="20" [pageIndex]="1" [showFirstLastButtons]="true" (page)="pageChanged($event)"></mat-paginator>

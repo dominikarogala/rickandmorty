@@ -1,28 +1,32 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { ICharacter } from 'src/app/interfaces/ICharacter';
-import { RestApiService } from 'src/app/services/rest-api.service';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { IRestData } from 'src/app/interfaces/IRestData';
+import { RestApiService } from './rest-api.service';
 
 @Component({
-  selector: 'app-rest-view',
-  templateUrl: './rest-view.component.html',
-  styleUrls: ['./rest-view.component.scss']
+    selector: 'app-rest-view',
+    templateUrl: './rest-view.component.html',
+    styleUrls: ['./rest-view.component.scss']
 })
-export class RestViewComponent implements OnInit, OnDestroy {
+export class RestViewComponent implements OnInit {
 
-  characters: ICharacter[] = [];
+    results$!: Observable<IRestData>;
+    
+    private _pageIndex: number = 1;
 
-  charactersSub: Subscription | undefined;
+    constructor(private _rest: RestApiService) { }
 
-  constructor(private _rest: RestApiService) { }
+    ngOnInit(): void {
+        this._getAllCharacters();
+    }
 
-  ngOnInit(): void {
-    this.charactersSub = this._rest.getAllCharacters().subscribe((data) => {
-      this.characters = data.results;
-    });
-  }
+    pageChanged(event: any): void {
+        this._pageIndex = event.pageIndex;
+        this._getAllCharacters();
+    }
 
-  ngOnDestroy(): void {
-    this.charactersSub?.unsubscribe();
-  }
+    private _getAllCharacters(): void {
+        this.results$ = this._rest.getAllCharacters(this._pageIndex);
+    }
 }
